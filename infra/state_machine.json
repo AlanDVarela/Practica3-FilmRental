@@ -1,0 +1,38 @@
+{
+  "StartAt": "CheckMovieExists",
+  "States": {
+    "CheckMovieExists": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:TU_CUENTA_ID:function:checkMovieExists",
+      "Next": "CheckMovieAvailable",
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "Next": "FailMovieNotAvailable" }]
+    },
+    "CheckMovieAvailable": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:TU_CUENTA_ID:function:checkMovieAvailable",
+      "Next": "CheckUserLimit",
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "Next": "FailMovieNotAvailable" }]
+    },
+    "CheckUserLimit": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:TU_CUENTA_ID:function:checkUserLimit",
+      "Next": "CreateRental",
+      "Catch": [{ "ErrorEquals": ["States.ALL"], "Next": "FailUserLimit" }]
+    },
+    "CreateRental": {
+      "Type": "Task",
+      "Resource": "arn:aws:lambda:us-east-1:TU_CUENTA_ID:function:createRental",
+      "End": true
+    },
+    "FailMovieNotAvailable": {
+      "Type": "Fail",
+      "Error": "Movie is not available",
+      "Cause": "La película no existe o ya está rentada."
+    },
+    "FailUserLimit": {
+      "Type": "Fail",
+      "Error": "User has reached the rental limit",
+      "Cause": "El usuario ya tiene 2 rentas activas."
+    }
+  }
+}

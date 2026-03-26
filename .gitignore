@@ -1,0 +1,12 @@
+# Dependencias
+node_modules/
+
+# Archivos empaquetados para AWS
+lambdas.zip
+
+.env
+
+infra/scripts/insert_fake_users.sh
+
+# SO
+.DS_Store

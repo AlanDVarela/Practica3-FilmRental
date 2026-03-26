@@ -30,6 +30,12 @@ El sistema implementa un ecosistema desacoplado utilizando los siguientes servic
 6. **Amazon SNS:** Sistema de mensajería con **Filter Policies** para notificaciones personalizadas.
 7. **Amazon EventBridge:** Disparador temporal (*cron*) para el ciclo de vida de las alertas.
 
+# Diagrama
+<p align="left">
+  <img src="https://imgur.com/YunAhQr.png" alt="Arquitectura" width="800"/>
+</p>
+
+
 ---
 
 ## Setup e Infraestructura
